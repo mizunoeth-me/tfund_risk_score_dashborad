@@ -10,10 +10,7 @@
     .card { border: 1px solid #2a2f3a; background: #151923; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
     .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     select, button, a.btn { background: #222838; color: #cfd6ea; border: 1px solid #333b52; border-radius: 6px; padding: 6px 10px; text-decoration: none; }
-    table { width: 100%; border-collapse: collapse; font-size: 13px; }
-    th, td { border: 1px solid #2d3447; padding: 6px 8px; text-align: left; }
-    th { background: #1b2130; }
-    iframe { width: 100%; height: calc(100vh - 320px); border: 1px solid #2d3447; background: #0f1116; }
+    iframe { width: 100%; height: calc(100vh - 120px); border: 1px solid #2d3447; background: #0f1116; border-radius: 8px; }
     .hint { color: #93a0bf; font-size: 12px; }
   </style>
 </head>
@@ -21,7 +18,7 @@
   <div class="wrap">
     <div class="card">
       <div><b>V6 评分看板（GitHub Pages）</b></div>
-      <div class="hint">生成时间: 2026-04-26 16:23:06</div>
+      <div class="hint">生成时间: 2026-04-26 16:36:53</div>
       <div class="row" style="margin-top:8px;">
         <label for="dateSelect">选择日期:</label>
         <select id="dateSelect">
@@ -31,38 +28,20 @@
 <option value="20260423">20260423</option>
         </select>
         <button id="openBtn">加载看板</button>
-        <a id="jsonBtn" class="btn" target="_blank">打开 JSON</a>
       </div>
     </div>
 
-    <div class="card">
-      <table>
-        <thead><tr><th>日期</th><th>看板</th><th>打分 JSON</th></tr></thead>
-        <tbody>
-<tr><td>20260426</td><td><a href="dashboards/v6_dashboard_20260426.html" target="_blank">看板</a></td><td><a href="data/v6_full_results_20260426.json" target="_blank">JSON</a></td></tr>
-<tr><td>20260425</td><td><a href="dashboards/v6_dashboard_20260425.html" target="_blank">看板</a></td><td><a href="data/v6_full_results_20260425.json" target="_blank">JSON</a></td></tr>
-<tr><td>20260424</td><td><a href="dashboards/v6_dashboard_20260424.html" target="_blank">看板</a></td><td><a href="data/v6_full_results_20260424.json" target="_blank">JSON</a></td></tr>
-<tr><td>20260423</td><td><a href="dashboards/v6_dashboard_20260423.html" target="_blank">看板</a></td><td><a href="data/v6_full_results_20260423.json" target="_blank">JSON</a></td></tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="card">
-      <iframe id="boardFrame" title="V6 Dashboard"></iframe>
-    </div>
+    <iframe id="boardFrame" title="V6 Dashboard"></iframe>
   </div>
 
   <script>
     const sel = document.getElementById("dateSelect");
     const frame = document.getElementById("boardFrame");
-    const jsonBtn = document.getElementById("jsonBtn");
     const openBtn = document.getElementById("openBtn");
 
     function refresh() {
       const d = sel.value;
       frame.src = `dashboards/v6_dashboard_${d}.html`;
-      jsonBtn.href = `data/v6_full_results_${d}.json`;
-      jsonBtn.textContent = `打开 JSON (${d})`;
       history.replaceState(null, "", `?date=${d}`);
     }
 
