@@ -9,8 +9,17 @@
     .wrap { max-width: 1400px; margin: 0 auto; padding: 16px; }
     .card { border: 1px solid #2a2f3a; background: #151923; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
     .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    select, button, a.btn { background: #222838; color: #cfd6ea; border: 1px solid #333b52; border-radius: 6px; padding: 6px 10px; text-decoration: none; }
-    iframe { width: 100%; height: calc(100vh - 120px); border: 1px solid #2d3447; background: #0f1116; border-radius: 8px; }
+    select, button, a.btn {
+      background: #222838; color: #cfd6ea; border: 1px solid #333b52;
+      border-radius: 6px; padding: 6px 10px; text-decoration: none;
+    }
+    iframe {
+      width: 100%;
+      height: calc(100vh - 120px);
+      border: 1px solid #2d3447;
+      background: #0f1116;
+      border-radius: 8px;
+    }
     .hint { color: #93a0bf; font-size: 12px; }
   </style>
 </head>
@@ -21,21 +30,20 @@
       <div class="row" style="margin-top:8px;">
         <label for="dateSelect">选择日期:</label>
         <select id="dateSelect">
-<option value="20260426">20260426</option>
-<option value="20260425">20260425</option>
-<option value="20260424">20260424</option>
-<option value="20260423">20260423</option>
+          <option value="20260426">20260426</option>
+          <option value="20260425">20260425</option>
+          <option value="20260424">20260424</option>
+          <option value="20260423">20260423</option>
         </select>
       </div>
     </div>
 
-    <iframe id="boardFrame" title=" Score Dashboard"></iframe>
+    <iframe id="boardFrame" title="Score Dashboard"></iframe>
   </div>
 
   <script>
     const sel = document.getElementById("dateSelect");
     const frame = document.getElementById("boardFrame");
-    const openBtn = document.getElementById("openBtn");
 
     function refresh() {
       const d = sel.value;
@@ -43,7 +51,6 @@
       history.replaceState(null, "", `?date=${d}`);
     }
 
-    openBtn.onclick = refresh;
     sel.onchange = refresh;
 
     const q = new URLSearchParams(location.search);
