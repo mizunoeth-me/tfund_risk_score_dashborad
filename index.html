@@ -10,17 +10,24 @@
     .card { border: 1px solid #2a2f3a; background: #151923; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
     .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     select, button, a.btn { background: #222838; color: #cfd6ea; border: 1px solid #333b52; border-radius: 6px; padding: 6px 10px; text-decoration: none; }
-    iframe { width: 100%; height: calc(100vh - 240px); border: 1px solid #2d3447; background: #0f1116; border-radius: 8px; }
+    iframe { width: 100%; height: calc(100vh - 320px); border: 1px solid #2d3447; background: #0f1116; border-radius: 8px; }
     .hint { color: #93a0bf; font-size: 12px; }
-    .score-note { margin-top: 8px; font-size: 12px; color: #b7c1d9; line-height: 1.7; }
-    .score-note b { color: #e6e6e6; }
+    details.score-guide { margin-top: 10px; border: 1px solid #2d3447; border-radius: 8px; background: #121622; }
+    details.score-guide > summary { cursor: pointer; list-style: none; padding: 10px 12px; font-size: 13px; color: #dce5ff; }
+    details.score-guide > summary::-webkit-details-marker { display: none; }
+    .guide-body { padding: 0 12px 12px 12px; }
+    .guide-note { margin: 6px 0 10px; font-size: 12px; color: #93a0bf; }
+    .guide-title { margin: 8px 0 6px; font-size: 12px; color: #cfd6ea; }
+    .guide-table { width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 10px; }
+    .guide-table th, .guide-table td { border: 1px solid #2d3447; padding: 6px 8px; text-align: left; vertical-align: top; }
+    .guide-table th { background: #1b2130; color: #e6e6e6; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
       <div><b>V6 评分看板（GitHub Pages）</b></div>
-      <div class="hint">生成时间: 2026-04-27 02:48:58</div>
+      <div class="hint">生成时间: 2026-04-27 02:53:39</div>
       <div class="row" style="margin-top:8px;">
         <label for="dateSelect">选择日期:</label>
         <select id="dateSelect">
@@ -30,15 +37,54 @@
 <option value="20260423">20260423</option>
         </select>
       </div>
-      <div class="score-note">
-        <div><b>评分项说明：</b></div>
-        <div><b>final_v6_score</b>：最终风险分，越高风险越高。</div>
-        <div><b>v6_risk_level</b>：风险等级（CRITICAL/HIGH/MEDIUM/LOW）。</div>
-        <div><b>score1_insurance</b>：保险金安全性风险子分。</div>
-        <div><b>score2_leverage</b>：杠杆/保证金压力风险子分。</div>
-        <div><b>score3_liquidity</b>：流动性与深度风险子分。</div>
-        <div><b>score4_sentiment</b>：情绪与多空结构风险子分。</div>
-      </div>
+      <details class="score-guide">
+        <summary><b>评分项说明（点击展开/收起）</b></summary>
+        <div class="guide-body">
+          <div class="guide-note">口径说明：分数范围为 0~1，数值越高表示风险越高；缺失项按动态分母处理。</div>
+
+          <div class="guide-title"><b>Global 层（币种汇总）</b></div>
+          <table class="guide-table">
+            <thead>
+              <tr><th>字段</th><th>含义</th><th>简化计算公式</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>final_v6_score</td><td>最终风险分（展示与排序主分）</td><td>global_base_score + 各类 penalty（上限封顶 1）</td></tr>
+              <tr><td>v6_risk_level</td><td>风险等级（CRITICAL/HIGH/MEDIUM/LOW）</td><td>按 final_v6_score 分段映射</td></tr>
+              <tr><td>global_base_score</td><td>不含惩罚项的基础风险分</td><td>symbol 内各 pair 的风险分按有效权重聚合</td></tr>
+              <tr><td>score1_insurance</td><td>保险金维度风险</td><td>f(insurance_oi_ratio 等指标)</td></tr>
+              <tr><td>score2_leverage</td><td>杠杆/保证金压力风险</td><td>f(oi_mcap_ratio、mmr 等指标)</td></tr>
+              <tr><td>score3_liquidity</td><td>流动性与交易深度风险</td><td>f(spot_turnover、depth_perp、spot_perp_ratio)</td></tr>
+              <tr><td>score4_sentiment</td><td>情绪与多空结构风险</td><td>f(funding_rate、long_short_ratio)</td></tr>
+            </tbody>
+          </table>
+
+          <div class="guide-title"><b>Ex 层（交易所-交易对）</b></div>
+          <table class="guide-table">
+            <thead>
+              <tr><th>字段</th><th>含义</th><th>简化计算公式</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>ex_risk_score</td><td>单交易所单 pair 风险分</td><td>Σ(可用子项分 × 子项权重) / Σ可用权重</td></tr>
+              <tr><td>ex_coverage</td><td>子项覆盖度</td><td>可用子项权重和 / 全部子项权重和</td></tr>
+              <tr><td>ex_score_confidence</td><td>Ex 分数置信度</td><td>通常与 ex_coverage 同向变化</td></tr>
+              <tr><td>s1_ex_insurance ~ s5_ex_index_deviation</td><td>Ex 五类子项分</td><td>各自按对应原始指标映射到 0~1</td></tr>
+            </tbody>
+          </table>
+
+          <div class="guide-title"><b>Cross 层（跨交易所-交易对）</b></div>
+          <table class="guide-table">
+            <thead>
+              <tr><th>字段</th><th>含义</th><th>简化计算公式</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>cross_risk_score</td><td>跨交易所 pair 风险分</td><td>Σ(可用跨所子项分 × 子项权重) / Σ可用权重</td></tr>
+              <tr><td>cross_coverage</td><td>跨所子项覆盖度</td><td>可用跨所子项权重和 / 全部跨所子项权重和</td></tr>
+              <tr><td>cross_score_confidence</td><td>Cross 分数置信度</td><td>cross_coverage 与交易所面板质量联合决定</td></tr>
+              <tr><td>s1_cross_* ~ s5_cross_*</td><td>跨所差异/集中度/覆盖异常子项分</td><td>按 funding、流动性、份额、OI 集中度等映射</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </details>
     </div>
 
     <iframe id="boardFrame" title="V6 Dashboard"></iframe>
