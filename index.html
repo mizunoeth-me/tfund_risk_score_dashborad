@@ -3,48 +3,50 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>币种打分看板</title>
+  <title>V6 评分看板（按日期）</title>
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background: #0f1116; color: #e6e6e6; }
     .wrap { max-width: 1400px; margin: 0 auto; padding: 16px; }
     .card { border: 1px solid #2a2f3a; background: #151923; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
     .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-    select {
-      background: #222838; color: #cfd6ea; border: 1px solid #333b52;
-      border-radius: 6px; padding: 6px 10px;
-    }
-    iframe {
-      width: 100%;
-      height: calc(100vh - 120px);
-      border: 1px solid #2d3447;
-      background: #0f1116;
-      border-radius: 8px;
-    }
+    select, button, a.btn { background: #222838; color: #cfd6ea; border: 1px solid #333b52; border-radius: 6px; padding: 6px 10px; text-decoration: none; }
+    iframe { width: 100%; height: calc(100vh - 240px); border: 1px solid #2d3447; background: #0f1116; border-radius: 8px; }
+    .hint { color: #93a0bf; font-size: 12px; }
+    .score-note { margin-top: 8px; font-size: 12px; color: #b7c1d9; line-height: 1.7; }
+    .score-note b { color: #e6e6e6; }
   </style>
 </head>
 <body>
   <div class="wrap">
     <div class="card">
-      <div><b>币种打分看板(v6)</b></div>
+      <div><b>V6 评分看板（GitHub Pages）</b></div>
+      <div class="hint">生成时间: 2026-04-27 02:48:58</div>
       <div class="row" style="margin-top:8px;">
         <label for="dateSelect">选择日期:</label>
         <select id="dateSelect">
-          <option value="20260426">20260426</option>
-          <option value="20260425">20260425</option>
-          <option value="20260424">20260424</option>
-          <option value="20260423">20260423</option>
+<option value="20260426">20260426</option>
+<option value="20260425">20260425</option>
+<option value="20260424">20260424</option>
+<option value="20260423">20260423</option>
         </select>
+      </div>
+      <div class="score-note">
+        <div><b>评分项说明：</b></div>
+        <div><b>final_v6_score</b>：最终风险分，越高风险越高。</div>
+        <div><b>v6_risk_level</b>：风险等级（CRITICAL/HIGH/MEDIUM/LOW）。</div>
+        <div><b>score1_insurance</b>：保险金安全性风险子分。</div>
+        <div><b>score2_leverage</b>：杠杆/保证金压力风险子分。</div>
+        <div><b>score3_liquidity</b>：流动性与深度风险子分。</div>
+        <div><b>score4_sentiment</b>：情绪与多空结构风险子分。</div>
       </div>
     </div>
 
-    <iframe id="boardFrame" title="Score Dashboard"></iframe>
+    <iframe id="boardFrame" title="V6 Dashboard"></iframe>
   </div>
 
   <script>
     const sel = document.getElementById("dateSelect");
     const frame = document.getElementById("boardFrame");
-
-    // 兼容 /repo 和 /repo/ 两种访问方式
     const parts = window.location.pathname.split("/").filter(Boolean);
     const repoBase = parts.length ? `/${parts[0]}` : "";
 
@@ -62,7 +64,6 @@
       const has = Array.from(sel.options).some(o => o.value === qsDate);
       if (has) sel.value = qsDate;
     }
-
     refresh();
   </script>
 </body>
