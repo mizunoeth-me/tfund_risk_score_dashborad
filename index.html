@@ -1,15 +1,169 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080d14" />
-    <meta name="description" content="币种风险评分与原始风险数据看板" />
-    <title>币种风险评分看板 · V6</title>
-    <script type="module" crossorigin src="./assets/index-CHAcN92w.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-4WWDripO.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>V6 评分看板（按日期）</title>
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; background: #0f1116; color: #e6e6e6; }
+    .wrap { max-width: 1400px; margin: 0 auto; padding: 16px; }
+    .card { border: 1px solid #2a2f3a; background: #151923; border-radius: 8px; padding: 12px; margin-bottom: 12px; }
+    .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    select, button, a.btn { background: #222838; color: #cfd6ea; border: 1px solid #333b52; border-radius: 6px; padding: 6px 10px; text-decoration: none; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { border: 1px solid #2d3447; padding: 6px 8px; text-align: left; }
+    th { background: #1b2130; }
+    iframe { width: 100%; height: calc(100vh - 320px); border: 1px solid #2d3447; background: #0f1116; }
+    .hint { color: #93a0bf; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <div><b>V6 评分看板（GitHub Pages）</b></div>
+      <div class="hint">生成时间: 2026-08-11 04:00:32</div>
+      <div class="row" style="margin-top:8px;">
+        <label for="dateSelect">选择日期:</label>
+        <select id="dateSelect">
+<option value="20260811">20260811</option>
+<option value="20260810">20260810</option>
+<option value="20260809">20260809</option>
+<option value="20260808">20260808</option>
+<option value="20260807">20260807</option>
+<option value="20260806">20260806</option>
+<option value="20260805">20260805</option>
+<option value="20260804">20260804</option>
+<option value="20260803">20260803</option>
+<option value="20260802">20260802</option>
+<option value="20260801">20260801</option>
+<option value="20260731">20260731</option>
+<option value="20260730">20260730</option>
+<option value="20260729">20260729</option>
+<option value="20260728">20260728</option>
+<option value="20260727">20260727</option>
+<option value="20260726">20260726</option>
+<option value="20260725">20260725</option>
+<option value="20260724">20260724</option>
+<option value="20260723">20260723</option>
+<option value="20260720">20260720</option>
+<option value="20260719">20260719</option>
+<option value="20260718">20260718</option>
+<option value="20260717">20260717</option>
+<option value="20260716">20260716</option>
+<option value="20260715">20260715</option>
+<option value="20260714">20260714</option>
+<option value="20260713">20260713</option>
+<option value="20260712">20260712</option>
+<option value="20260711">20260711</option>
+<option value="20260710">20260710</option>
+<option value="20260709">20260709</option>
+<option value="20260708">20260708</option>
+<option value="20260707">20260707</option>
+<option value="20260706">20260706</option>
+<option value="20260701">20260701</option>
+<option value="20260630">20260630</option>
+<option value="20260629">20260629</option>
+<option value="20260628">20260628</option>
+<option value="20260627">20260627</option>
+<option value="20260626">20260626</option>
+<option value="20260624">20260624</option>
+<option value="20260623">20260623</option>
+<option value="20260622">20260622</option>
+<option value="20260621">20260621</option>
+<option value="20260620">20260620</option>
+<option value="20260619">20260619</option>
+<option value="20260618">20260618</option>
+<option value="20260617">20260617</option>
+<option value="20260616">20260616</option>
+<option value="20260615">20260615</option>
+<option value="20260614">20260614</option>
+<option value="20260613">20260613</option>
+<option value="20260612">20260612</option>
+<option value="20260611">20260611</option>
+<option value="20260610">20260610</option>
+<option value="20260609">20260609</option>
+<option value="20260608">20260608</option>
+<option value="20260607">20260607</option>
+<option value="20260606">20260606</option>
+<option value="20260605">20260605</option>
+<option value="20260604">20260604</option>
+<option value="20260603">20260603</option>
+<option value="20260602">20260602</option>
+<option value="20260601">20260601</option>
+<option value="20260531">20260531</option>
+<option value="20260530">20260530</option>
+<option value="20260529">20260529</option>
+<option value="20260528">20260528</option>
+<option value="20260527">20260527</option>
+<option value="20260526">20260526</option>
+<option value="20260525">20260525</option>
+<option value="20260524">20260524</option>
+<option value="20260523">20260523</option>
+<option value="20260522">20260522</option>
+<option value="20260521">20260521</option>
+<option value="20260520">20260520</option>
+<option value="20260519">20260519</option>
+<option value="20260518">20260518</option>
+<option value="20260517">20260517</option>
+<option value="20260516">20260516</option>
+<option value="20260515">20260515</option>
+<option value="20260514">20260514</option>
+<option value="20260513">20260513</option>
+<option value="20260512">20260512</option>
+<option value="20260511">20260511</option>
+<option value="20260510">20260510</option>
+<option value="20260509">20260509</option>
+<option value="20260508">20260508</option>
+<option value="20260507">20260507</option>
+<option value="20260506">20260506</option>
+<option value="20260505">20260505</option>
+<option value="20260504">20260504</option>
+<option value="20260503">20260503</option>
+<option value="20260502">20260502</option>
+<option value="20260501">20260501</option>
+<option value="20260430">20260430</option>
+<option value="20260429">20260429</option>
+<option value="20260428">20260428</option>
+<option value="20260427">20260427</option>
+<option value="20260426">20260426</option>
+<option value="20260425">20260425</option>
+<option value="20260424">20260424</option>
+<option value="20260423">20260423</option>
+        </select>
+        <button id="openBtn">加载看板</button>
+        <a id="jsonBtn" class="btn" target="_blank">打开 JSON</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <iframe id="boardFrame" title="V6 Dashboard"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const sel = document.getElementById("dateSelect");
+    const frame = document.getElementById("boardFrame");
+    const jsonBtn = document.getElementById("jsonBtn");
+    const openBtn = document.getElementById("openBtn");
+
+    function refresh() {
+      const d = sel.value;
+      frame.src = `dashboards/v6_dashboard_${d}.html`;
+      jsonBtn.href = `data/v6_full_results_${d}.json`;
+      jsonBtn.textContent = `打开 JSON (${d})`;
+      history.replaceState(null, "", `?date=${d}`);
+    }
+
+    openBtn.onclick = refresh;
+    sel.onchange = refresh;
+
+    const q = new URLSearchParams(location.search);
+    const qsDate = q.get("date");
+    if (qsDate) {
+      const has = Array.from(sel.options).some(o => o.value === qsDate);
+      if (has) sel.value = qsDate;
+    }
+    refresh();
+  </script>
+</body>
 </html>
