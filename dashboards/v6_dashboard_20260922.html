@@ -7,8 +7,8 @@
   <style>
     body { margin: 0; font-family: Arial, sans-serif; background:#0f1116; color:#e6e6e6; }
     .wrap { display:flex; height:100vh; }
-    .left { width:260px; border-right:1px solid #2a2f3a; overflow:auto; background:#151923; }
-    .main { flex:1; display:flex; flex-direction:column; }
+    .left { width:260px; flex-shrink:0; border-right:1px solid #2a2f3a; overflow:auto; background:#151923; }
+    .main { flex:1; min-width:0; display:flex; flex-direction:column; }
     .head { padding:12px 16px; border-bottom:1px solid #2a2f3a; background:#151923; }
     .tabs { display:flex; gap:8px; margin-top:8px; flex-wrap:wrap; }
     .tab-btn { background:#222838; color:#cfd6ea; border:1px solid #333b52; border-radius:6px; padding:6px 10px; cursor:pointer; }
@@ -45,7 +45,7 @@
   </aside>
   <section class="main">
     <div class="head">
-      <div><b>V6 评分看板</b> | 日期: 20260922_1000 | 生成时间: 2026-09-22 05:47:03</div>
+      <div><b>V6 评分看板</b> | 日期: 20260922_1000 | 生成时间: 2026-09-22 05:49:41</div>
       <div style="margin-top:4px; color:#93a0bf; font-size:12px;">来源文件: v6/exports/v6_full_results_20260922_1000.json</div>
       <div class="tabs">
         <button class="tab-btn active" data-tab="global">Global</button>
