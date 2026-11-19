@@ -931,6 +931,7 @@ TAIKO,True,充提覆盖有缺口,unresolved,,1 家现货交易所充提覆盖不
 TAIKO,True,原生／桥接类型待核实,unresolved,,部分合约仅确认部署，尚不能判定原生发行／桥接／包装类型,2026-11-19T01:15:53Z,{}
 TAKE,True,路径开关冲突,observed,sui,Sui 不同路径开关不一致,2026-11-19T01:15:53Z,{}
 TAKE,True,原生／桥接类型待核实,unresolved,,部分合约仅确认部署，尚不能判定原生发行／桥接／包装类型,2026-11-19T01:15:53Z,{}
+TEST003,False,币种身份待核实,unresolved,,未建立唯一且有依据的币种外部身份,2026-11-19T01:15:53Z,{}
 TESTA,False,币种身份待核实,unresolved,,未建立唯一且有依据的币种外部身份,2026-11-19T01:15:53Z,{}
 THE,True,交易所支持链差异大,observed,,3 家已观测交易所：支持链并集 2 条、共同链 1 条；差异率 50%。,2026-11-19T01:15:53Z,"{""exchange_chains"": {""binance"": [""binance-smart-chain""], ""gate"": [""binance-smart-chain""], ""mexc"": [""binance-smart-chain"", ""ethereum""]}, ""metric"": ""1 - intersection / union"", ""threshold"": 0.5}"
 THE,True,原生／桥接类型待核实,unresolved,,部分合约仅确认部署，尚不能判定原生发行／桥接／包装类型,2026-11-19T01:15:53Z,{}
