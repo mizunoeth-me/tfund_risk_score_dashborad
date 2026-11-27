@@ -129,8 +129,6 @@ BCH,True,网络归属待核实,unresolved,,1 项网络归属未确认,2026-11-27
 BCH,True,充提覆盖有缺口,unresolved,,1 家现货交易所充提覆盖不全,2026-11-27T12:16:02Z,"{""kucoin"": {""status"": ""partial"", ""reason"": ""存在链映射、开关缺失或采集异常"", ""observed_at"": ""2026-11-27T12:15:04Z"", ""routes"": 1, ""unmapped"": 1, ""missing_flags"": 0, ""source_types"": [""official_api""]}}"
 BCH,True,币种身份待核实,unresolved,,未建立唯一且有依据的币种外部身份,2026-11-27T12:16:02Z,{}
 BCH,True,原生／桥接类型待核实,unresolved,,部分合约仅确认部署，尚不能判定原生发行／桥接／包装类型,2026-11-27T12:16:02Z,{}
-BEAM,True,交易所支持链差异大,observed,,3 家已观测交易所：支持链并集 2 条、共同链 0 条；差异率 100%。,2026-11-27T12:16:02Z,"{""exchange_chains"": {""bitget"": [""ethereum""], ""bybit"": [""ethereum""], ""mexc"": [""beam""]}, ""metric"": ""1 - intersection / union"", ""threshold"": 0.5}"
-BEAM,True,币种身份待核实,unresolved,,未建立唯一且有依据的币种外部身份,2026-11-27T12:16:02Z,{}
 BEAM,True,原生／桥接类型待核实,unresolved,,部分合约仅确认部署，尚不能判定原生发行／桥接／包装类型,2026-11-27T12:16:02Z,{}
 BEAMX,True,币种身份待核实,unresolved,,未建立唯一且有依据的币种外部身份,2026-11-27T12:16:02Z,{}
 BEAMX,True,原生／桥接类型待核实,unresolved,,部分合约仅确认部署，尚不能判定原生发行／桥接／包装类型,2026-11-27T12:16:02Z,{}
